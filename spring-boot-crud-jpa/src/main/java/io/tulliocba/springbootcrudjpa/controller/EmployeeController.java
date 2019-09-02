@@ -3,6 +3,7 @@ package io.tulliocba.springbootcrudjpa.controller;
 
 import io.tulliocba.springbootcrudjpa.model.Employee;
 import io.tulliocba.springbootcrudjpa.repository.EmployeeRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +26,7 @@ public class EmployeeController {
         return employeeRepository.findAll();
     }
 
-    @GetMapping("/employees/{id}")
+    @GetMapping("/employees/{employeeId}")
     public ResponseEntity<Employee> getEmployeeById(@PathVariable Long employeeId) {
         Optional<Employee> employee = employeeRepository.findById(employeeId);
         return employee.isPresent() ? ResponseEntity.of(employee) : ResponseEntity.noContent().build();
@@ -36,23 +37,21 @@ public class EmployeeController {
         return employeeRepository.save(employee);
     }
 
-    @PutMapping("/employees/{id}")
-    public ResponseEntity<Employee> updateEmployee(@PathVariable Long id, @Valid @RequestBody Employee employeeDetails) {
-        Optional<Employee> optionalEmployee = employeeRepository.findById(id);
+    @PutMapping("/employees/{employeeId}")
+    public ResponseEntity<Employee> updateEmployee(@PathVariable Long employeeId, @Valid @RequestBody Employee employeeDetails) {
+        Optional<Employee> optionalEmployee = employeeRepository.findById(employeeId);
 
         if(!optionalEmployee.isPresent()) return ResponseEntity.noContent().build();
 
         Employee employee = optionalEmployee.get();
-        employee.setEmailId(employeeDetails.getEmailId());
-        employee.setFirstName(employeeDetails.getFirstName());
-        employee.setLastName(employeeDetails.getLastName());
+        BeanUtils.copyProperties(employee, employeeDetails, "id");
 
         return ResponseEntity.of(Optional.of(employeeRepository.save(employee)));
     }
 
-    @DeleteMapping("/employees/{id}")
-    public ResponseEntity<Map<String, Boolean>> deleteEmployee(@PathVariable Long id) {
-        Optional<Employee> optionalEmployee = employeeRepository.findById(id);
+    @DeleteMapping("/employees/{employeeId}")
+    public ResponseEntity<Map<String, Boolean>> deleteEmployee(@PathVariable Long employeeId) {
+        Optional<Employee> optionalEmployee = employeeRepository.findById(employeeId);
 
         if(!optionalEmployee.isPresent()) return ResponseEntity.noContent().build();
 
