@@ -11,6 +11,8 @@ import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.*;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.concurrent.ScheduledExecutorService;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = SpringBootRestHibernateApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class SpringCrudTest {
