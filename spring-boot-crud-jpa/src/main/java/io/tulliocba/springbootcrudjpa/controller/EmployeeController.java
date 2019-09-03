@@ -44,7 +44,7 @@ public class EmployeeController {
         if(!optionalEmployee.isPresent()) return ResponseEntity.noContent().build();
 
         Employee employee = optionalEmployee.get();
-        BeanUtils.copyProperties(employee, employeeDetails, "id");
+        BeanUtils.copyProperties(employeeDetails, employee, "id");
 
         return ResponseEntity.of(Optional.of(employeeRepository.save(employee)));
     }
