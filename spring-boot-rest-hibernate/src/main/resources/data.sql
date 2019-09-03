@@ -1,0 +1,2 @@
+insert into users (id, first_name, last_name, email_address, created_at, created_by, last_modified_at, last_modified_by)
+values (1, 'Tulio', 'Gabriel', 'tullio_cba@hotmail.com', now(), 'Tulio', now(), 'Tulio');
