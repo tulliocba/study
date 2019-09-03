@@ -6,5 +6,11 @@ import org.springframework.stereotype.Component;
 
 @Component
 @ConfigurationProperties(prefix = "file")
-public class FilePropertieBinding {
+public class FilePropertyBinding {
+
+    private String uploadDir;
+
+    public String getUploadDir() {
+        return uploadDir;
+    }
 }
