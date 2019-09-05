@@ -1,4 +1,4 @@
-package io.tulliocba.springbootdownloaduploadfile.controller;
+package io.tulliocba.springbootdownloaduploadfile.controller.upload_file;
 
 import io.tulliocba.springbootdownloaduploadfile.payload.Response;
 import io.tulliocba.springbootdownloaduploadfile.service.FileStorageService;

@@ -1,5 +1,8 @@
 package io.tulliocba.springbootdownloaduploadfile.payload;
 
+import lombok.Data;
+
+@Data
 public class Response {
 
     private final String fileName;

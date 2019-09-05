@@ -13,4 +13,8 @@ public class FilePropertyBinding {
     public String getUploadDir() {
         return uploadDir;
     }
+
+    public void setUploadDir(String uploadDir) {
+        this.uploadDir = uploadDir;
+    }
 }
