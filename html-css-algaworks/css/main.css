@@ -18,7 +18,7 @@ header img {
 }
 
 .container {
-    width: 1200px;
+    width: 94%;
     margin: 0 auto;
     padding-left: 15px;
     padding-right: 15px;
@@ -30,10 +30,16 @@ header img {
 
 article {
     border: 1px solid #95a4a5;
-    display: inline-block;
     padding: 0 20px 0 20px;
-    margin: 15px;
-    width: 30%;
+    margin-top: 10px;
+}
+
+@media (min-width: 800px) {
+    article {
+        display: inline-block;
+        margin: 15px;
+        width: 30%;
+    }
 }
 
 article > h2 {
