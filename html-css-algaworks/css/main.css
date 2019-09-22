@@ -17,12 +17,6 @@ header img {
     margin-top: 12px;
 }
 
-.container {
-    width: 94%;
-    margin: 0 auto;
-    padding-left: 15px;
-    padding-right: 15px;
-}
 
 #planos {
     padding: 80px 0;
@@ -32,14 +26,6 @@ article {
     border: 1px solid #95a4a5;
     padding: 0 20px 0 20px;
     margin-top: 10px;
-}
-
-@media (min-width: 800px) {
-    article {
-        display: inline-block;
-        margin: 15px;
-        width: 30%;
-    }
 }
 
 article > h2 {
