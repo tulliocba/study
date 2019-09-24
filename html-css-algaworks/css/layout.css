@@ -1,6 +1,15 @@
 .layout-cabecalho {
     height: 6.0rem;
     border-bottom: 0.1rem solid #ccc;
+    background-color: #FFFFFF;
+}
+
+.layout-cabecalho--home {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
 }
 
 .layout-cabecalho img {
@@ -13,5 +22,19 @@
 
 .layout-chamada {
     padding: 8rem 0;
+    margin-top: 6rem;
     background-color: #7ab55c;
+}
+
+.layout-depoimento {
+    padding: 8rem;
+    background-color: #e7e7e7;
+}
+
+.layout-rodape {
+    padding: 4rem 0;
+
+    background-color: #484848;
+    color: #FFFFFF;
+    text-align: center;
 }
