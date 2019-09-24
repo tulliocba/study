@@ -1,12 +1,17 @@
 .layout-cabecalho {
-    height: 60px;
-    border-bottom: 1px solid #ccc;
+    height: 6.0rem;
+    border-bottom: 0.1rem solid #ccc;
 }
 
 .layout-cabecalho img {
-    margin-top: 12px;
+    margin-top: 1.2rem;
 }
 
 .layout-planos {
-    padding: 80px 0;
+    padding: 8.0rem 0;
+}
+
+.layout-chamada {
+    padding: 8rem 0;
+    background-color: #7ab55c;
 }
