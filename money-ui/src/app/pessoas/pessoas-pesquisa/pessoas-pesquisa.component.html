@@ -1,0 +1,34 @@
+<div class="container">
+  <form autocomplete="off" (ngSubmit)="pesquisar()">
+    <div class="ui-g">
+      <div class="ui-g-12">
+        <h1>Pessoas</h1>
+      </div>
+
+      <div class="ui-g-12 ui-fluid">
+        <label>Nome</label>
+        <input pInputText type="text" name="name" [(ngModel)]="filter.name">
+      </div>
+
+      <div class="ui-g-12">
+        <button pButton type="submit" label="Pesquisar"></button>
+      </div>
+    </div>
+  </form>
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <app-pessoas-grid   [pessoas]="pessoas"
+                          [filter]="filter"
+                          [lazy]="true"
+                          [totalRecords]="totalRecords"
+                          (onLazyLoad)="lazyLoad($event)"
+                          (excluirEvent)="excluir($event)"
+                          (ativarInativarEvento)="ativatInativar($event)">
+
+      </app-pessoas-grid>
+    </div>
+    <div class="ui-g-12">
+      <a routerLink="/pessoas/novo" pButton label="Nova Pessoa"></a>
+    </div>
+  </div>
+</div>

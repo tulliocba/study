@@ -1,0 +1,135 @@
+<div class="container">
+  <form #f="ngForm" action="" (ngSubmit)="salvar(f)">
+    <div class="ui-g">
+      <div class="ui-g-12">
+        <h1>{{isEditanto() ? 'Editando' : 'Nova'}} Pessoa</h1>
+      </div>
+
+      <div class="ui-g-12 ui-fluid">
+        <label>Nome</label>
+        <input type="text"
+               pInputText
+               name="nome"
+               [(ngModel)]="pessoa.name"
+               #name="ngModel"
+               required
+               minlength="5">
+        <app-message
+          [control]="name"
+          error="minlength"
+          text="Mínimo de {{ name.errors?.minlength?.requiredLength }} caracteres">
+        </app-message>
+        <app-message
+          [control]="name"
+          error="required"
+          text="Nome é obrigatório">
+        </app-message>
+      </div>
+
+      <div class="ui-g-12 ui-md-9 ui-fluid">
+        <label>Rua</label>
+        <input type="text"
+               pInputText
+               name="street"
+               [(ngModel)]="pessoa.address.street"
+               #street="ngModel"
+               required>
+        <app-message
+          [control]="street"
+          error="required"
+          text="Rua é obrigatório">
+        </app-message>
+      </div>
+
+      <div class="ui-g-12 ui-md-3 ui-fluid">
+        <label>Cidade</label>
+        <input type="text"
+               pInputText
+               name="city"
+               [(ngModel)]="pessoa.address.city"
+               #city="ngModel"
+               required>
+
+        <app-message
+          [control]="city"
+          error="required"
+          text="Cidade é obrigatório">
+        </app-message>
+      </div>
+
+      <div class="ui-g-12 ui-md-4 ui-fluid">
+        <label>Telefone Celular</label>
+        <input type="text" pInputText name="mobileNumber" [(ngModel)]="pessoa.address.mobileNumber">
+      </div>
+
+      <div class="ui-g-12 ui-md-4 ui-fluid">
+        <label>Estado</label>
+        <input type="text"
+               pInputText
+               name="state"
+               [(ngModel)]="pessoa.address.state"
+               #state="ngModel"
+               required>
+        <app-message
+          [control]="state"
+          error="required"
+          text="Estado é obrigatório">
+        </app-message>
+      </div>
+
+      <div class="ui-g-12 ui-md-6 ui-fluid">
+        <label>Estado Completo</label>
+        <input type="text"
+               pInputText
+               name="stateFull"
+               [(ngModel)]="pessoa.address.stateFull"
+               #stateFull="ngModel"
+               required>
+        <app-message
+          [control]="stateFull"
+          error="required"
+          text="Estado Completo é obrigatório">
+        </app-message>
+      </div>
+
+      <div class="ui-g-12 ui-md-4 ui-fluid">
+        <label>CEP</label>
+        <p-inputMask
+          mask="99999-999"
+          placeholder="00.000-000"
+          name="zipcode"
+          [(ngModel)]="pessoa.address.zipcode"
+          #zipcode="ngModel"
+          required>
+        </p-inputMask>
+        <app-message
+          [control]="zipcode"
+          error="required"
+          text="CEP é obrigatório">
+        </app-message>
+      </div>
+
+      <div class="ui-g-12 ui-md-6 ui-fluid">
+        <label>Telefone</label>
+        <input type="text"
+               pInputText
+               name="phoneNumber"
+               [(ngModel)]="pessoa.address.phoneNumber"
+               #phoneNumber="ngModel"
+               required>
+
+        <app-message
+          [control]="phoneNumber"
+          error="required"
+          text="Telefone é obrigatório">
+        </app-message>
+      </div>
+
+      <div class="ui-g-12">
+        <button pButton label="Salvar" type="submit" [disabled]="f.invalid"></button>
+        <button pButton label="Novo" type="submit" class="ui-button-info" (click)="novo(f)"></button>
+        <a [routerLink]="['/pessoas']">Voltar para a pesquisa</a>
+      </div>
+    </div>
+  </form>
+</div>

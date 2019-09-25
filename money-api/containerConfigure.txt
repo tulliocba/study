@@ -1,0 +1,4 @@
+1. docker run -d -p 3306:3306 --name=money-mysql --env="MYSQL_ROOT_PASSWORD=P@ssw0rd" mysql
+2. docker exec -it money-mysql bash
+3. mysql -h localhost -P 3306 -u root -p
+4. ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'P@ssw0rd';

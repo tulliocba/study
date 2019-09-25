@@ -1,0 +1,40 @@
+<p-dataTable  [value]="pessoas"
+              [paginator]="true"
+              [rows]="filter.size"
+              [responsive]="true"
+              [lazy]="lazy"
+              [totalRecords]="totalRecords"
+              (onLazyLoad)="lazyLoad($event)"
+              emptyMessage="Nenhuma pessoa encontrada"
+              #tabela>
+  <p-column field="name" header="Nome"></p-column>
+  <p-column field="address.city" header="Cidade"></p-column>
+  <p-column field="address.stateFull" header="Estado"></p-column>
+  <p-column field="enabled" header="Status">
+    <ng-template let-pessoa="rowData" pTemplate="body">
+      <a  href="javascript:;"
+          [pTooltip]="pessoa.enabled ? 'Desativar' : 'Ativar'"
+          tooltipPosition="top"
+          (click)="ativarInativar(pessoa)">
+          {{pessoa.enabled ? 'Ativo' : 'Inativo'}}
+      </a>
+    </ng-template>
+  </p-column>
+  <p-column styleClass="col-acoes">
+    <ng-template pTemplate="body" let-pessoa="rowData">
+      <a  pButton
+          icon="fa-pencil"
+          pTooltip="Editar"
+          tooltipPosition="top"
+          [routerLink]="['/pessoas', pessoa.id]">
+      </a>
+
+      <button pButton
+              icon="fa-trash"
+              pTooltip="Excluir"
+              tooltipPosition="top"
+              (click)="excluir(pessoa)">
+      </button>
+    </ng-template>
+  </p-column>
+</p-dataTable>
