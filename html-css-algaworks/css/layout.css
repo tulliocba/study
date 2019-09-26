@@ -1,7 +1,8 @@
 .layout-cabecalho {
-    height: 6.0rem;
+    height: 6rem;
     line-height: 6rem;
     border-bottom: 0.1rem solid #ccc;
+
     background-color: #FFFFFF;
 }
 
@@ -12,7 +13,6 @@
     right: 0;
     z-index: 1;
 }
-
 
 .layout-planos {
     padding: 8.0rem 0;
@@ -35,4 +35,8 @@
     background-color: #484848;
     color: #FFFFFF;
     text-align: center;
+}
+
+.layout-assinatura {
+    padding: 4rem 0;
 }
