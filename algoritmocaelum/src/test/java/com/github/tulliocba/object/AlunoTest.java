@@ -1,6 +1,8 @@
-package com.github.tulliocba;
+package com.github.tulliocba.object;
 
 import static org.assertj.core.api.Assertions.*;
+
+import com.github.tulliocba.object.Aluno;
 import org.junit.Test;
 
 public class AlunoTest {
