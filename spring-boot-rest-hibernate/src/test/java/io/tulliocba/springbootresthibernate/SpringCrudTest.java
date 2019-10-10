@@ -2,12 +2,16 @@ package io.tulliocba.springbootresthibernate;
 
 import io.tulliocba.springbootresthibernate.model.User;
 import static org.assertj.core.api.Assertions.*;
+
+import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.core.annotation.Order;
 import org.springframework.http.*;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -15,6 +19,7 @@ import java.util.concurrent.ScheduledExecutorService;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = SpringBootRestHibernateApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class SpringCrudTest {
 
     @Autowired
@@ -30,7 +35,7 @@ public class SpringCrudTest {
     }
 
     @Test
-    public void test_get_all_users() {
+    public void test1_get_all_users() {
         HttpHeaders headers = new HttpHeaders();
 
         HttpEntity<String> httpEntity = new HttpEntity<>(null, headers);
@@ -43,7 +48,7 @@ public class SpringCrudTest {
     }
 
     @Test
-    public void test_find_user_by_id() {
+    public void test2_find_user_by_id() {
         User user = testRestTemplate.getForObject(getRootUrl() + USER_ENDPOINT + "/1", User.class);
 
         assertThat(user.getFirstName()).isEqualTo("Tulio");
@@ -51,7 +56,7 @@ public class SpringCrudTest {
     }
 
     @Test
-    public void test_create_user() {
+    public void test3_create_user() {
         User user = new User("admin", "admin", "admin@teste.com", "admin", "admin");
 
         ResponseEntity<User> userResponseEntity = testRestTemplate.postForEntity(getRootUrl() + USER_ENDPOINT, user, User.class);
@@ -65,7 +70,7 @@ public class SpringCrudTest {
     }
 
     @Test
-    public void test_update_user() {
+    public void test4_update_user() {
         User user = testRestTemplate.getForObject(getRootUrl() + USER_ENDPOINT + "/1", User.class);
         user.setLastName("Gabriel da Silva");
 
@@ -77,7 +82,7 @@ public class SpringCrudTest {
     }
 
     @Test
-    public void test_delete_user() {
+    public void test5_delete_user() {
         User user = testRestTemplate.getForObject(getRootUrl() + USER_ENDPOINT + "/1", User.class);
 
         assertThat(user).isNotNull();
