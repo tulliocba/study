@@ -14,12 +14,21 @@ public class Vector {
     }
 
     public void adiciona(int posicao, Aluno aluno) {
-        alunos[posicao] = aluno;
-        totalDeAlunos++;
+        if (!posicaoValida(posicao)) {
+            throw new IllegalArgumentException("Posição Inválida!");
+        }
+
+        for (int i = this.totalDeAlunos - 1; i >= posicao; i -= 1) {
+            this.alunos[i + 1] = this.alunos[i];
+        }
+    }
+
+    private boolean posicaoValida(int posicao) {
+        return posicao >= 0 && posicao <= this.totalDeAlunos;
     }
 
     public Aluno pega(int posicao) {
-        if(!posicaoOcupada(posicao))
+        if (!posicaoOcupada(posicao))
             throw new IllegalArgumentException("Posição inválida!");
         return alunos[posicao];
     }
@@ -30,7 +39,7 @@ public class Vector {
 
     public boolean contem(Aluno aluno) {
         for (int i = 0; i < this.totalDeAlunos; i++) {
-            if(aluno.equals(alunos[i])) return true;
+            if (aluno.equals(alunos[i])) return true;
         }
         return false;
     }
@@ -46,16 +55,16 @@ public class Vector {
 
     @Override
     public String toString() {
-        if(totalDeAlunos == 0)
+        if (totalDeAlunos == 0)
             return "[]";
 
         StringBuilder builder = new StringBuilder("[");
 
-        for (int i = 0; i < this.totalDeAlunos -1; i++ ){
+        for (int i = 0; i < this.totalDeAlunos - 1; i++) {
             builder.append(alunos[i]);
             builder.append(", ");
         }
-        builder.append(this.alunos[this.totalDeAlunos -1]);
+        builder.append(this.alunos[this.totalDeAlunos - 1]);
         builder.append("]");
         return builder.toString();
     }

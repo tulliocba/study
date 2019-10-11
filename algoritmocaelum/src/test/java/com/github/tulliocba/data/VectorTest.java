@@ -48,10 +48,10 @@ public class VectorTest {
         this.lista.adiciona(joao);
         Aluno pedro = new Aluno("Pedro");
         this.lista.adiciona(pedro);
+        Aluno carlos = new Aluno("Carlos");
+        this.lista.adiciona(1, carlos);
 
-        assertThat(this.lista.pega(0)).isEqualTo(joao);
-        assertThat(this.lista.pega(1)).isNotEqualTo(joao);
+        assertThat(this.lista.pega(1)).isEqualTo(carlos);
+        assertThat(this.lista.pega(1)).isNotEqualTo(pedro);
     }
-
-
 }
