@@ -49,9 +49,26 @@ public class VectorTest {
         Aluno pedro = new Aluno("Pedro");
         this.lista.adiciona(pedro);
         Aluno carlos = new Aluno("Carlos");
-        this.lista.adiciona(1, carlos);
+        this.lista.adiciona(carlos);
+        Aluno jose = new Aluno("Jose");
+        this.lista.adiciona(0, jose);
 
-        assertThat(this.lista.pega(1)).isEqualTo(carlos);
-        assertThat(this.lista.pega(1)).isNotEqualTo(pedro);
+        assertThat(this.lista.pega(0)).isEqualTo(jose);
+        assertThat(this.lista.pega(0)).isNotEqualTo(joao);
+    }
+
+    @Test
+    public void remover_objeto_por_posicao() {
+        Aluno joao = new Aluno("João");
+        this.lista.adiciona(joao);
+        Aluno pedro = new Aluno("Pedro");
+        this.lista.adiciona(pedro);
+        Aluno marcos = new Aluno("Marcos");
+        this.lista.adiciona(marcos);
+
+        this.lista.remove(1);
+
+        assertThat(this.lista.pega(1)).isEqualTo(marcos);
+        assertThat(this.lista.tamanho()).isEqualTo(2);
     }
 }

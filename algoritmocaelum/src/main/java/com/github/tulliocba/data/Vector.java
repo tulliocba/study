@@ -2,25 +2,26 @@ package com.github.tulliocba.data;
 
 import com.github.tulliocba.object.Aluno;
 
-import java.util.Arrays;
-
 public class Vector {
     private Aluno[] alunos = new Aluno[100];
     private int totalDeAlunos = 0;
 
     public void adiciona(Aluno aluno) {
+        this.garantaEspaco();
         alunos[totalDeAlunos] = aluno;
         totalDeAlunos++;
     }
 
     public void adiciona(int posicao, Aluno aluno) {
+        this.garantaEspaco();
         if (!posicaoValida(posicao)) {
             throw new IllegalArgumentException("Posição Inválida!");
         }
-
-        for (int i = this.totalDeAlunos - 1; i >= posicao; i -= 1) {
+        for (int i = this.totalDeAlunos - 1; i >= posicao; i--) {
             this.alunos[i + 1] = this.alunos[i];
         }
+        this.alunos[posicao] = aluno;
+        this.totalDeAlunos++;
     }
 
     private boolean posicaoValida(int posicao) {
@@ -34,7 +35,25 @@ public class Vector {
     }
 
     public void remove(int posicao) {
+        if (!posicaoOcupada(posicao)) {
+            throw new IllegalArgumentException("Posiçao Inválida!");
+        }
 
+        for (int i = posicao; i < this.totalDeAlunos - 1; i++) {
+            this.alunos[i] = this.alunos[i + 1];
+        }
+        this.totalDeAlunos--;
+        this.alunos[totalDeAlunos] = null;
+    }
+
+    private void garantaEspaco() {
+        if(this.totalDeAlunos == this.alunos.length) {
+            Aluno[] novoArray = new Aluno[this.alunos.length * 2];
+            for (int i = 0; i < this.alunos.length; i++) {
+                novoArray[i] = this.alunos[i];
+            }
+            this.alunos = novoArray;
+        }
     }
 
     public boolean contem(Aluno aluno) {
