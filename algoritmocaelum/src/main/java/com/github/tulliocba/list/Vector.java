@@ -1,6 +1,4 @@
-package com.github.tulliocba.data;
-
-import com.github.tulliocba.object.Aluno;
+package com.github.tulliocba.list;
 
 public class Vector {
     private Aluno[] alunos = new Aluno[100];

@@ -1,6 +1,5 @@
-package com.github.tulliocba.data;
+package com.github.tulliocba.list;
 
-import com.github.tulliocba.object.Aluno;
 import org.junit.Before;
 import org.junit.Test;
 
