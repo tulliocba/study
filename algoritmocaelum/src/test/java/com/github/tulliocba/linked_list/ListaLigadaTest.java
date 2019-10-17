@@ -15,7 +15,6 @@ public class ListaLigadaTest {
         lista.adiciona(pedro);
         String carlos = "Carlos";
         lista.adiciona(carlos);
-        System.out.println(lista.toString());
         assertThat(lista.pega(0)).isEqualTo(joao);
         assertThat(lista.tamanho()).isEqualTo(3);
     }
