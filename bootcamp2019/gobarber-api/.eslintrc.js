@@ -19,6 +19,7 @@ module.exports = {
         ecmaVersion: 2018,
     },
     rules: {
+        "class-methods-use-this": "off",
         "prettier/prettier": "error",
         "no-param-reassign": "off",
         "camelcase": "off",
