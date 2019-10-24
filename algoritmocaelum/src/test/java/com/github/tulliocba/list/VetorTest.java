@@ -5,12 +5,12 @@ import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class VectorTest {
-    private Vector lista;
+public class VetorTest {
+    private Vetor lista;
 
     @Before
     public void setUp() throws Exception {
-        lista = new Vector();
+        lista = new Vetor();
     }
 
     @Test

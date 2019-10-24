@@ -1,6 +1,6 @@
 package com.github.tulliocba.list;
 
-public class Vector {
+public class Vetor {
     private Aluno[] alunos = new Aluno[100];
     private int totalDeAlunos = 0;
 
