@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 import { startOfHour, parseISO, isBefore, format, subHours } from 'date-fns';
-import { pt } from 'date-fns/locale/pt';
+import pt from 'date-fns/locale/pt';
 import Notification from '../schemas/Notification';
 import Appointment from '../models/Appointment';
 import User from '../models/User';
@@ -104,6 +104,11 @@ class AppointmentController {
                     as: 'provider',
                     attributes: ['name', 'email'],
                 },
+                {
+                    model: User,
+                    as: 'user',
+                    attributes: ['name'],
+                },
             ],
         });
 
@@ -128,7 +133,18 @@ class AppointmentController {
         await Mail.senMail({
             to: `${appointment.provider.name} <${appointment.provider.email}>`,
             subject: 'Agendamento cancelado',
-            text: 'Você tem mais um cancelamento',
+            template: 'cancellation',
+            context: {
+                provider: appointment.provider.name,
+                user: appointment.user.name,
+                date: format(
+                    appointment.date,
+                    "'dia' dd 'de' MMMM', às' H:mm'h'",
+                    {
+                        locale: pt,
+                    }
+                ),
+            },
         });
 
         return res.json(appointment);
