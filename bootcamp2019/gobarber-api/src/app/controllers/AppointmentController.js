@@ -14,23 +14,19 @@ class AppointmentController {
         const appointments = await Appointment.findAll({
             where: { user_id: req.userId, canceled_at: null },
             order: ['date'],
-            attributes: ['id', 'date'],
+            attributes: ['id', 'date', 'past', 'cancelable'],
             limit: 20,
             offset: (page - 1) * 20,
-            include: [
-                {
-                    model: User,
-                    as: 'provider',
-                    attributes: ['id', 'name'],
-                    include: [
-                        {
-                            model: File,
-                            as: 'avatar',
-                            attributes: ['id', 'path', 'url'],
-                        },
-                    ],
-                },
-            ],
+            include: [{
+                model: User,
+                as: 'provider',
+                attributes: ['id', 'name'],
+                include: [{
+                    model: File,
+                    as: 'avatar',
+                    attributes: ['id', 'path', 'url'],
+                }, ],
+            }, ],
         });
         return res.json(appointments);
     }
@@ -85,8 +81,7 @@ class AppointmentController {
 
         const formattedDate = format(
             hourStart,
-            "'dia' dd 'de' MMMM', às' H:mm'h'",
-            { locale: pt }
+            "'dia' dd 'de' MMMM', às' H:mm'h'", { locale: pt }
         );
 
         await Notification.create({
@@ -99,8 +94,7 @@ class AppointmentController {
 
     async delete(req, res) {
         const appointment = await Appointment.findByPk(req.params.id, {
-            include: [
-                {
+            include: [{
                     model: User,
                     as: 'provider',
                     attributes: ['name', 'email'],
