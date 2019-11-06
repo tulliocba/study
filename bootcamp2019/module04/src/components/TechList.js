@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import TechItem from './TechItem';
+
 class TechList extends Component {
     state = {
         newTech: '',
@@ -8,6 +10,16 @@ class TechList extends Component {
             'React Native'
         ]
     };
+
+    componentDidMount() {
+
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+
+    }
+
+    componentWillunmount() {}
 
     handleInputChange = e => {
         this.setState({ newTech: e.target.value });
@@ -20,21 +32,32 @@ class TechList extends Component {
             newTech: ''
         });
     }
-    render() {
-            return ( <
-                form onSubmit = { this.handleSubmit } >
-                <
-                ul > {
-                    this.state.techs.map(tech => < li key = { tech } > { tech } < /li>)} <
-                        /ul> <
-                        input type = "text"
-                        onChange = { this.handleInputChange }
-                        value = { this.state.newTech }
-                        /> <
-                        button type = "submit" > Enviar < /button> <
-                        /form>
-                    );
-                }
-            }
 
-            export default TechList;
+    handleDelete = tech => {
+        this.setState({ techs: this.state.techs.filter(t => t !== tech) });
+    }
+    render() {
+        return ( <
+            form onSubmit = { this.handleSubmit } >
+            <
+            ul > {
+                this.state.techs.map(tech => ( <
+                    TechItem key = { tech }
+                    tech = { tech }
+                    onDelete = {
+                        () => this.handleDelete(tech) }
+                    />
+                ))
+            } <
+            /ul> <
+            input type = "text"
+            onChange = { this.handleInputChange }
+            value = { this.state.newTech }
+            /> <
+            button type = "submit" > Enviar < /button> <
+            /form>
+        );
+    }
+}
+
+export default TechList;
