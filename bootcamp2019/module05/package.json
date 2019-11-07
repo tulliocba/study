@@ -31,6 +31,11 @@
     ]
   },
   "devDependencies": {
-    "@types/styled-components": "^4.1.22"
+    "@types/styled-components": "^4.1.22",
+    "babel-eslint": "^10.0.3",
+    "eslint": "^6.6.0",
+    "eslint-config-prettier": "^6.5.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "prettier": "^1.18.2"
   }
 }
