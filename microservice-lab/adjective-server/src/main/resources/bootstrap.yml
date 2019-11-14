@@ -1,0 +1,7 @@
+---
+spring:
+  application:
+    name: adjective-server
+  cloud:
+    config:
+      uri: http://localhost:8001
