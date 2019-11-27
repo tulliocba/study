@@ -1,91 +1,58 @@
-import React from "react";
+import React, { Component } from "react";
 import { MdAddShoppingCart } from "react-icons/md";
-
+import { connect } from "react-redux";
 import { ProductList } from "./styles";
+import { formatPrice } from "../../util/format";
+import api from "../../services/api";
 
-export default function Home() {
-    return (
-        <ProductList>
-            <li>
-                <img
-                    src="https://static.netshoes.com.br/produtos/tenis-nike-revolution-5-masculino/26/HZM-1731-026/HZM-1731-026_detalhe2.jpg?ims=326x"
-                    alt="Tẽnis"
-                />
-                <strong>Tênis muito legal</strong>
-                <span>R$129,90</span>
-                <button type="button">
-                    <div>
-                        <MdAddShoppingCart size={16} color="#FFF">
-                            3
-                        </MdAddShoppingCart>
-                    </div>
-                    <span>ADICIONAR AO CARRINHO</span>
-                </button>
-            </li>
-            <li>
-                <img
-                    src="https://static.netshoes.com.br/produtos/tenis-nike-revolution-5-masculino/26/HZM-1731-026/HZM-1731-026_detalhe2.jpg?ims=326x"
-                    alt="Tẽnis"
-                />
-                <strong>Tênis muito legal</strong>
-                <span>R$129,90</span>
-                <button type="button">
-                    <div>
-                        <MdAddShoppingCart size={16} color="#FFF">
-                            3
-                        </MdAddShoppingCart>
-                    </div>
-                    <span>ADICIONAR AO CARRINHO</span>
-                </button>
-            </li>
-            <li>
-                <img
-                    src="https://static.netshoes.com.br/produtos/tenis-nike-revolution-5-masculino/26/HZM-1731-026/HZM-1731-026_detalhe2.jpg?ims=326x"
-                    alt="Tẽnis"
-                />
-                <strong>Tênis muito legal</strong>
-                <span>R$129,90</span>
-                <button type="button">
-                    <div>
-                        <MdAddShoppingCart size={16} color="#FFF">
-                            3
-                        </MdAddShoppingCart>
-                    </div>
-                    <span>ADICIONAR AO CARRINHO</span>
-                </button>
-            </li>
-            <li>
-                <img
-                    src="https://static.netshoes.com.br/produtos/tenis-nike-revolution-5-masculino/26/HZM-1731-026/HZM-1731-026_detalhe2.jpg?ims=326x"
-                    alt="Tẽnis"
-                />
-                <strong>Tênis muito legal</strong>
-                <span>R$129,90</span>
-                <button type="button">
-                    <div>
-                        <MdAddShoppingCart size={16} color="#FFF">
-                            3
-                        </MdAddShoppingCart>
-                    </div>
-                    <span>ADICIONAR AO CARRINHO</span>
-                </button>
-            </li>
-            <li>
-                <img
-                    src="https://static.netshoes.com.br/produtos/tenis-nike-revolution-5-masculino/26/HZM-1731-026/HZM-1731-026_detalhe2.jpg?ims=326x"
-                    alt="Tẽnis"
-                />
-                <strong>Tênis muito legal</strong>
-                <span>R$129,90</span>
-                <button type="button">
-                    <div>
-                        <MdAddShoppingCart size={16} color="#FFF">
-                            3
-                        </MdAddShoppingCart>
-                    </div>
-                    <span>ADICIONAR AO CARRINHO</span>
-                </button>
-            </li>
-        </ProductList>
-    );
+class Home extends Component {
+    // eslint-disable-next-line react/state-in-constructor
+    state = {
+        produtcs: []
+    };
+
+    async componentDidMount() {
+        const response = await api.get("/products");
+        const data = response.data.map(product => ({
+            ...product,
+            priceFormatted: formatPrice(product.price)
+        }));
+        this.setState({ produtcs: data });
+    }
+
+    handleAddProduct = product => {
+        const { dispatch } = this.props;
+        dispatch({
+            type: "ADD_TO_CART",
+            product
+        });
+    };
+
+    render() {
+        const { produtcs } = this.state;
+        return (
+            <ProductList>
+                {produtcs.map(product => (
+                    <li key={product.id}>
+                        <img src={product.image} alt={product.title} />
+                        <strong>{product.title}</strong>
+                        <span>{product.priceFormatted}</span>
+                        <button
+                            type="button"
+                            onClick={() => this.handleAddProduct(product)}
+                        >
+                            <div>
+                                <MdAddShoppingCart size={16} color="#FFF">
+                                    3
+                                </MdAddShoppingCart>
+                            </div>
+                            <span>ADICIONAR AO CARRINHO</span>
+                        </button>
+                    </li>
+                ))}
+            </ProductList>
+        );
+    }
 }
+
+export default connect()(Home);
