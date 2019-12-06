@@ -47,3 +47,11 @@ spring:
   cloud:
     config:
       uri: http://localhost:8001
+---
+spring:
+  profiles: cold-noun
+  application:
+    name: noun-service
+  cloud:
+    config:
+      uri: http://localhost:8001

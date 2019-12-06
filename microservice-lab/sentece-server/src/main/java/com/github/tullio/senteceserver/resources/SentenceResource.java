@@ -15,25 +15,20 @@ import java.util.List;
 @RestController
 public class SentenceResource {
     @Autowired
-    private DiscoveryClient client;
+    private RestTemplate client;
+
     @GetMapping("/sentence")
-    public @ResponseBody String getSentence() {
-        return getWord("subject-server".toUpperCase()) + " "
-                + getWord("verb-server".toUpperCase()) + " "
-                + getWord("article-server".toUpperCase()) + " "
-                + getWord("adjective-server".toUpperCase()) + " "
-                + getWord("noun-server".toUpperCase()) + "."
+    public @ResponseBody
+    String getSentence() {
+        return getWord("subject-service".toUpperCase()) + " "
+                + getWord("verb-service".toUpperCase()) + " "
+                + getWord("article-service".toUpperCase()) + " "
+                + getWord("adjective-service".toUpperCase()) + " "
+                + getWord("noun-service".toUpperCase()) + "."
                 ;
     }
 
     public String getWord(String service) {
-        List<ServiceInstance> list = client.getInstances(service);
-        if (list != null && list.size() > 0 ) {
-            URI uri = list.get(0).getUri();
-            if (uri !=null ) {
-                return (new RestTemplate()).getForObject(uri,String.class);
-            }
-        }
-        return null;
+        return client.getForObject("http://" + service, String.class);
     }
 }
