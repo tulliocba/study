@@ -1,0 +1,49 @@
+---
+spring:
+  profiles: sentence
+  application:
+    name: sentence-service
+  cloud:
+    config:
+      uri: http://localhost:8001
+
+---
+spring:
+  profiles: subject
+  application:
+    name: subject-service
+  cloud:
+    config:
+      uri: http://localhost:8001
+---
+spring:
+  profiles: verb
+  application:
+    name: verb-service
+  cloud:
+    config:
+      uri: http://localhost:8001
+---
+spring:
+  profiles: article
+  application:
+    name: article-service
+  cloud:
+    config:
+      uri: http://localhost:8001
+---
+spring:
+  profiles: adjective
+  application:
+    name: adjective-service
+  cloud:
+    config:
+      uri: http://localhost:8001
+---
+spring:
+  profiles: noun
+  application:
+    name: noun-service
+  cloud:
+    config:
+      uri: http://localhost:8001
