@@ -55,3 +55,11 @@ spring:
   cloud:
     config:
       uri: http://localhost:8001
+---
+spring:
+  profiles: lucky-word
+  application:
+    name: lucky-word-client
+  cloud:
+    config:
+      uri: http://localhost:8001

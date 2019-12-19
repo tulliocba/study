@@ -43,3 +43,8 @@ words: boat,book,vote,seat,backpack,partition,groundhog
 spring:
   profiles: cold-noun
 words: icicle,refrigerator,blizzard,snowball
+---
+spring:
+  profiles: lucky-word
+server:
+  port: 8002
